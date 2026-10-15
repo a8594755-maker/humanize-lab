@@ -75,16 +75,16 @@ powershell -ExecutionPolicy Bypass -File .\Setup.ps1
 
 系統左側選單提供兩種改寫引擎模式，兩者皆完整搭載 **心理語言學 5 大認知規則 + SICO 黃金範例克隆 + 雙向段落選優**：
 
-### 模式 A：放入自己的 LLM API 金鑰（內建 7 大供應商一鍵範本）
+### 模式 A：放入自己的 LLM API 金鑰（內建 7 大供應商 2026 最新模型範本）
 在介面左上方「使用方式」切換為 **「自己的 LLM API」**，即可直接選擇供應商範本並填入你的 API Key：
-* **OpenAI 官方**：`https://api.openai.com/v1`（預設 `gpt-4o`，亦支援 `gpt-4.1`、`o3-mini`）
-* **Anthropic Claude 官方**：`https://api.anthropic.com/v1/messages`（原生支援 Claude `x-api-key` 協定，預設 `claude-3-7-sonnet-latest`）
-* **Google Gemini 官方**：`https://generativelanguage.googleapis.com/v1beta/openai`（預設 `gemini-2.5-pro`）
-* **OpenRouter**：`https://openrouter.ai/api/v1`（可自由切換 Claude / DeepSeek / GPT 等所有模型）
-* **DeepSeek 官方**：`https://api.deepseek.com/v1`（預設 `deepseek-chat`）
-* **Groq 極速推論**：`https://api.groq.com/openai/v1`（預設 `llama-3.3-70b-versatile`）
-* **Ollama 本機模型（100% 離線免金鑰）**：`http://127.0.0.1:11434/v1`（預設 `llama3.1:8b`，免填 API Key）
+* **OpenAI 官方**：`https://api.openai.com/v1`（預設 `gpt-6.1-sol`，亦支援 `gpt-6-astra`、`gpt-6-luna`、`gpt-5.6-sol`）
+* **Anthropic Claude 官方**：`https://api.anthropic.com/v1/messages`（原生支援 Claude `x-api-key` 協定，預設 `claude-sonnet-5-5`，亦支援 `claude-opus-5-5`、`claude-fable-5-1`、`claude-haiku-5-5`）
+* **Google Gemini 官方**：`https://generativelanguage.googleapis.com/v1beta/openai`（預設 `gemini-3.1-pro-preview`，亦支援 `gemini-3.8-flash`、`gemini-3.5-flash`）
+* **OpenRouter**：`https://openrouter.ai/api/v1`（可自由切換 `anthropic/claude-sonnet-5.5`、`openai/gpt-6.1-sol`、`deepseek/deepseek-v4-pro` 等所有最新模型）
+* **DeepSeek 官方**：`https://api.deepseek.com/v1`（預設 `deepseek-v4-pro`，亦支援 `deepseek-flash`、`deepseek-reasoner`）
+* **Groq 極速推論**：`https://api.groq.com/openai/v1`（預設 `llama-4-maverick`）
+* **Ollama 本機模型（100% 離線免金鑰）**：`http://127.0.0.1:11434/v1`（預設 `qwen3:14b`，免填 API Key）
 * **自訂任何 OpenAI 相容端點**（API 金鑰僅保存在當前瀏覽器記憶體，絕不寫入硬碟或匯出檔案）
 
-### 模式 B：Codex 訂閱額度模式（預設 `Luna + Extra High`，免 API 金鑰）
-若電腦已安裝 Codex CLI 並執行過 `codex login` 登入 ChatGPT Plus / Pro 帳號，系統可在唯讀沙盒（`--sandbox read-only`）中呼叫 **`Luna (gpt-6-luna)`** 或 **`Sol (gpt-6.1-sol)`**，直接消耗既有訂閱額度，無須額外付費 API。
+### 模式 B：Codex 訂閱額度模式（預設 `GPT-6 Luna + Extra High`，免 API 金鑰）
+若電腦已安裝 Codex CLI 並執行過 `codex login` 登入 ChatGPT Plus / Pro 帳號，系統可在唯讀沙盒（`--sandbox read-only`）中呼叫 **`GPT-6 Luna (gpt-6-luna)`**、**`GPT-6.1 Sol (gpt-6.1-sol)`** 或 **`GPT-6 Astra (gpt-6-astra)`**，直接消耗既有訂閱額度，無須額外付費 API。

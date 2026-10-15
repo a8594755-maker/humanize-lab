@@ -94,19 +94,19 @@ Your browser will automatically open **`http://127.0.0.1:8391`**.
 
 Humanize Lab supports **two flexible ways** to power the Psycholinguistic + SICO rewriting loop in the sidebar:
 
-### Option A: Bring Your Own LLM API (1-Click Presets Included)
-Select **"自己的 LLM API (OpenAI / Claude / Gemini / DeepSeek / Ollama)"** in the Web UI to use your own API key with built-in 1-click presets:
-* **OpenAI Official**: `https://api.openai.com/v1` (`gpt-4o`, `gpt-4.1`, `o3-mini`)
-* **Anthropic Claude Official**: `https://api.anthropic.com/v1/messages` (`claude-3-7-sonnet-latest`, native Anthropic `x-api-key` protocol supported)
-* **Google Gemini Official**: `https://generativelanguage.googleapis.com/v1beta/openai` (`gemini-2.5-pro`, `gemini-2.5-flash`)
-* **OpenRouter**: `https://openrouter.ai/api/v1` (`anthropic/claude-3.7-sonnet`, `deepseek/deepseek-chat`, etc.)
-* **DeepSeek Official**: `https://api.deepseek.com/v1` (`deepseek-chat`, `deepseek-reasoner`)
-* **Groq**: `https://api.groq.com/openai/v1` (`llama-3.3-70b-versatile`)
-* **Local Ollama (100% Offline & Free)**: `http://127.0.0.1:11434/v1` (`llama3.1:8b`, `qwen2.5:14b` — no API key required)
+### Option A: Bring Your Own LLM API (1-Click 2026 Frontier Presets Included)
+Select **"自己的 LLM API (OpenAI / Claude / Gemini / DeepSeek / Ollama)"** in the Web UI to use your own API key with built-in 1-click presets for the latest models:
+* **OpenAI Official**: `https://api.openai.com/v1` (`gpt-6.1-sol`, `gpt-6-astra`, `gpt-6-luna`, `gpt-5.6-sol`)
+* **Anthropic Claude Official**: `https://api.anthropic.com/v1/messages` (`claude-sonnet-5-5`, `claude-opus-5-5`, `claude-fable-5-1`, `claude-haiku-5-5` — native Anthropic `x-api-key` protocol supported)
+* **Google Gemini Official**: `https://generativelanguage.googleapis.com/v1beta/openai` (`gemini-3.1-pro-preview`, `gemini-3.8-flash`, `gemini-3.5-flash`)
+* **OpenRouter**: `https://openrouter.ai/api/v1` (`anthropic/claude-sonnet-5.5`, `openai/gpt-6.1-sol`, `deepseek/deepseek-v4-pro`, etc.)
+* **DeepSeek Official**: `https://api.deepseek.com/v1` (`deepseek-v4-pro`, `deepseek-flash`, `deepseek-reasoner`)
+* **Groq**: `https://api.groq.com/openai/v1` (`llama-4-maverick`, `qwen-3-72b`)
+* **Local Ollama (100% Offline & Free)**: `http://127.0.0.1:11434/v1` (`qwen3:14b`, `llama4:latest` — no API key required)
 * **Any Custom OpenAI-Compatible Endpoint**
 
 ### Option B: `$0 API` Codex Subscription Mode
-If you have `codex.exe` logged into your ChatGPT Plus / Pro / Team account (`codex login`), `codex_provider.py` runs **`Luna (gpt-6-luna)`** (`Extra High` reasoning effort) or **`Sol (gpt-6.1-sol)`** inside a read-only, tool-disabled sandbox (`--sandbox read-only`), consuming your existing ChatGPT subscription quota without any `sk-...` API key or per-token billing.
+If you have `codex.exe` logged into your ChatGPT Plus / Pro / Team account (`codex login`), `codex_provider.py` runs **`GPT-6 Luna (gpt-6-luna)`**, **`GPT-6.1 Sol (gpt-6.1-sol)`**, or **`GPT-6 Astra (gpt-6-astra)`** (`Extra High` reasoning effort) inside a read-only, tool-disabled sandbox (`--sandbox read-only`), consuming your existing ChatGPT subscription quota without any `sk-...` API key or per-token billing.
 
 ---
 

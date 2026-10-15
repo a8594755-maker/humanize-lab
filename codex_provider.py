@@ -19,7 +19,7 @@ import time
 
 ROOT = Path(__file__).resolve().parent
 WORK = ROOT / '.codex-runtime'
-ALLOWED_MODELS = ('gpt-6-luna', 'gpt-6.1-sol')
+ALLOWED_MODELS = ('gpt-6-luna', 'gpt-6.1-sol', 'gpt-6-astra', 'gpt-6-sol', 'gpt-5.6-sol', 'gpt-5.6-luna')
 ALLOWED_EFFORTS = ('low', 'medium', 'high', 'xhigh', 'max')
 DISABLED = ('shell_tool unified_exec apps browser_use browser_use_external computer_use '
             'image_generation multi_agent multi_agent_v2 memories plugins remote_plugin hooks goals '

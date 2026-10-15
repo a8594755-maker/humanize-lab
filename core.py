@@ -480,7 +480,12 @@ def guide_objective(models, text):
     if len(sents) <= 1:
         return art, art
     s_scores = models.detect_batch(sents, 'guide')
-    obj = 0.65 * art + 0.25 * (sum(s_scores) / len(s_scores)) + 0.10 * max(s_scores)
+    win_size = min(5, len(sents))
+    windows = [' '.join(sents[i:i+win_size]) for i in range(0, len(sents) - win_size + 1)]
+    w_scores = models.detect_batch(windows, 'guide') if windows else s_scores
+    w_mean = sum(w_scores) / max(len(w_scores), 1)
+    w_max = max(w_scores) if w_scores else art
+    obj = 0.45 * art + 0.30 * w_mean + 0.15 * w_max + 0.10 * (sum(s_scores) / len(s_scores))
     z = zerogpt_detect(text)
     if z is not None:
         obj = 0.50 * obj + 0.50 * z['score']
@@ -497,6 +502,12 @@ def diagnose_hot_sentences(models, text):
     if z and z['flagged']:
         for zs in z['flagged'][:4]:
             hot.append(f'ZeroGPT flagged this exact sentence as AI: {zs!r} -> Rewrite in plain, casual college-student English ("To me,", "I\'d rather...", "keep costs from getting out of hand") without slick marketing verbs.')
+    if len(sents) >= 5:
+        windows = [' '.join(sents[i:i+5]) for i in range(0, len(sents) - 4)]
+        w_scores = models.detect_batch(windows, 'guide')
+        max_w_idx = max(range(len(w_scores)), key=lambda idx: w_scores[idx])
+        if w_scores[max_w_idx] > 0.20:
+            hot.append(f'Turnitin 5-sentence window (sentences {max_w_idx+1}-{max_w_idx+5}) scores {w_scores[max_w_idx]:.2f} AI -> Combine adjacent medium sentences with ", while..." or ", yet..., so..." and pair with a short 6-10 word sentence.')
     s_scores = models.detect_batch(sents, 'guide')
     scored = sorted(((s_scores[i], i, s) for i, s in enumerate(sents)), reverse=True)
     for s_score, i, s in scored[:3]:

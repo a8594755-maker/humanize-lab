@@ -429,6 +429,49 @@ def post_humanize(text, original='', protected=()):
         return text
     return res
 
+_ZEROGPT_CACHE = {}
+_ZEROGPT_SESSION = None
+
+def zerogpt_detect(text):
+    """Optional live ZeroGPT check (returns {'score': float, 'flagged': list[str]} or None if offline)."""
+    if not text or len(text.split()) < 40:
+        return None
+    if text in _ZEROGPT_CACHE:
+        return _ZEROGPT_CACHE[text]
+    global _ZEROGPT_SESSION
+    try:
+        headers = {
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Content-Type': 'application/json',
+            'Origin': 'https://www.zerogpt.com',
+            'Referer': 'https://www.zerogpt.com/',
+            'Sec-Ch-Ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+            'Sec-Ch-Ua-Mobile': '?0',
+            'Sec-Ch-Ua-Platform': '"Windows"',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-site',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        }
+        if _ZEROGPT_SESSION is None:
+            _ZEROGPT_SESSION = requests.Session()
+            _ZEROGPT_SESSION.get('https://www.zerogpt.com/', headers=headers, timeout=4)
+        r = _ZEROGPT_SESSION.post('https://api.zerogpt.com/api/detect/detectText',
+                                  json={'input_text': text}, headers=headers, timeout=6)
+        if r.status_code == 200:
+            data = r.json().get('data') or {}
+            if 'fakePercentage' in data:
+                res = {'score': float(data.get('fakePercentage', 0.0)) / 100.0,
+                       'flagged': [s.strip() for s in (data.get('h') or []) if isinstance(s, str) and s.strip()]}
+                if len(_ZEROGPT_CACHE) > 500:
+                    _ZEROGPT_CACHE.clear()
+                _ZEROGPT_CACHE[text] = res
+                return res
+    except Exception:
+        pass
+    return None
+
 def guide_objective(models, text):
     art = models.detect(text, 'guide')['score']
     if not isinstance(models, LocalModels):
@@ -438,6 +481,9 @@ def guide_objective(models, text):
         return art, art
     s_scores = models.detect_batch(sents, 'guide')
     obj = 0.65 * art + 0.25 * (sum(s_scores) / len(s_scores)) + 0.10 * max(s_scores)
+    z = zerogpt_detect(text)
+    if z is not None:
+        obj = 0.50 * obj + 0.50 * z['score']
     return obj, art
 
 def diagnose_hot_sentences(models, text):
@@ -446,9 +492,13 @@ def diagnose_hot_sentences(models, text):
     sents = sentences(text)
     if len(sents) <= 1:
         return []
+    hot = []
+    z = zerogpt_detect(text)
+    if z and z['flagged']:
+        for zs in z['flagged'][:4]:
+            hot.append(f'ZeroGPT flagged this exact sentence as AI: {zs!r} -> Rewrite in plain, casual college-student English ("To me,", "I\'d rather...", "keep costs from getting out of hand") without slick marketing verbs.')
     s_scores = models.detect_batch(sents, 'guide')
     scored = sorted(((s_scores[i], i, s) for i, s in enumerate(sents)), reverse=True)
-    hot = []
     for s_score, i, s in scored[:3]:
         if s_score > 0.15:
             hot.append(f'Sentence {i+1} triggers detector signal ({s_score:.2f}): {s!r} -> Break sentence rhythm, use contractions, and rewrite with plain everyday words.')

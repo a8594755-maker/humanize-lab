@@ -13,7 +13,7 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel, Field, SecretStr
 from starlette.middleware.trustedhost import TrustedHostMiddleware
-from core import LocalModels, LLMClient, Settings, run_pipeline, words, endpoint_url
+from core import LocalModels, LLMClient, Settings, run_pipeline, words, endpoint_url, diagnostics_report
 from codex_provider import CodexClient, status as codex_status, ALLOWED_MODELS, ALLOWED_EFFORTS
 
 ROOT = Path(__file__).resolve().parent
@@ -81,9 +81,12 @@ def work(job_id, req):
     try:
         if req.action == 'detect':
             guide = MODELS.detect(req.text)
+            diag = diagnostics_report(MODELS, req.text)
             result = {'original': req.text, 'text': req.text, 'changed': False,
-                      'guide_before': guide, 'guide_after': guide, 'history': [], 'mode': 'detect',
-                      'interpretation': '本機模型分數，非真實作者來源機率。'}
+                      'guide_before': guide, 'guide_after': guide,
+                      'diagnostics_before': diag, 'diagnostics_after': diag,
+                      'history': [], 'mode': 'detect',
+                      'interpretation': '本機模型與滑動視窗分數，非真實作者來源機率。'}
             if req.holdout and not stop.is_set():
                 update({'stage': '第二偵測器：Desklib'})
                 h = MODELS.detect(req.text, 'holdout')

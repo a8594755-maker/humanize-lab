@@ -555,12 +555,32 @@ def recombine_sentence_pool(original, best_text, candidate_drafts, models, prote
     valid_full.sort(key=lambda x: (x[0], x[1]))
     return valid_full[0][2]
 
+def diagnostics_report(models, text):
+    sents = sentences(text)
+    win_list = []
+    if isinstance(models, LocalModels) and sents:
+        w = min(5, len(sents))
+        chunks = [' '.join(sents[i:i+w]) for i in range(0, len(sents) - w + 1)]
+        w_scores = models.detect_batch(chunks, 'guide')
+        for i, sc in enumerate(w_scores):
+            win_list.append({
+                'window': i + 1,
+                'range': f'S{i+1}–S{i+w}',
+                'score': round(float(sc), 4),
+                'preview': (sents[i][:60] + '…') if len(sents[i]) > 60 else sents[i]
+            })
+    z = zerogpt_detect(text) if isinstance(models, LocalModels) else None
+    mean_w = round(sum(x['score'] for x in win_list) / max(len(win_list), 1), 4) if win_list else 0.0
+    max_w = round(max((x['score'] for x in win_list), default=0.0), 4)
+    return {'sliding_windows': win_list, 'window_mean': mean_w, 'window_max': max_w, 'zerogpt': z}
+
 def run_pipeline(text, llm, models, settings, update=lambda _: None, stop=None):
     if not 1 <= settings.rounds <= 3 or not 1 <= settings.candidates <= 4:
         raise ValueError('最多 3 輪、每輪 4 個候選。')
     stop = stop or threading.Event()
-    update({'stage': '本機偵測原文', 'attempt': 0})
+    update({'stage': '本機偵測原文與滑動視窗診斷', 'attempt': 0})
     base = models.detect(text)
+    diag_before = diagnostics_report(models, text)
     best, best_score = text, base['score']
     best_obj, _ = guide_objective(models, text)
     history, feedback = [], style_feedback(text) + diagnose_hot_sentences(models, text)
@@ -622,8 +642,10 @@ def run_pipeline(text, llm, models, settings, update=lambda _: None, stop=None):
             break
         if isinstance(models, LocalModels) and best_score < 0.01 and best_obj < 0.05:
             break
+    diag_after = diagnostics_report(models, best)
     result = {'original': text, 'text': best, 'changed': best != text,
               'guide_before': base, 'guide_after': models.detect(best), 'history': history,
+              'diagnostics_before': diag_before, 'diagnostics_after': diag_after,
               'stopped': stop.is_set(), 'api_failed': api_failed,
               'settings': {'rounds': settings.rounds, 'candidates': settings.candidates,
                            'heldout_requested': settings.holdout},

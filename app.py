@@ -14,7 +14,7 @@ from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel, Field, SecretStr
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 from core import LocalModels, LLMClient, Settings, run_pipeline, words, endpoint_url
-from codex_provider import CodexClient, status as codex_status, ALLOWED_MODELS
+from codex_provider import CodexClient, status as codex_status, ALLOWED_MODELS, ALLOWED_EFFORTS
 
 ROOT = Path(__file__).resolve().parent
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
@@ -34,7 +34,8 @@ class RunRequest(BaseModel):
     text: str = Field(min_length=1, max_length=20000)
     action: str = 'rewrite'
     provider: str = 'codex'
-    codex_model: str = 'gpt-6.1-sol'
+    codex_model: str = 'gpt-6-luna'
+    codex_effort: str = 'xhigh'
     base_url: str = Field(default='', max_length=500)
     api_key: SecretStr = SecretStr('')
     model: str = Field(default='', max_length=200)
@@ -88,7 +89,7 @@ def work(job_id, req):
                 h = MODELS.detect(req.text, 'holdout')
                 result.update({'holdout_before': h, 'holdout_after': h})
         else:
-            llm = CodexClient(req.codex_model, stop) if req.provider == 'codex' else LLMClient(req.base_url, req.api_key.get_secret_value(), req.model)
+            llm = CodexClient(req.codex_model, stop, req.codex_effort) if req.provider == 'codex' else LLMClient(req.base_url, req.api_key.get_secret_value(), req.model)
             result = run_pipeline(req.text, llm, MODELS,
                         Settings(req.rounds, req.candidates, tuple(req.protected), req.holdout), update, stop)
             result['rewriter'] = getattr(llm, 'metadata', {'provider': 'api', 'model': req.model})
@@ -110,8 +111,8 @@ def run(req: RunRequest):
         raise HTTPException(400, 'Unknown action')
     if req.provider not in ('codex', 'api'):
         raise HTTPException(400, 'Unknown provider')
-    if req.provider == 'codex' and req.codex_model not in ALLOWED_MODELS:
-        raise HTTPException(400, '不支援的 Codex 模型。')
+    if req.provider == 'codex' and (req.codex_model not in ALLOWED_MODELS or req.codex_effort not in ALLOWED_EFFORTS):
+        raise HTTPException(400, '不支援的 Codex 模型或思考強度。')
     if req.action == 'rewrite' and req.provider == 'codex':
         if not codex_status()['chatgpt_login']:
             raise HTTPException(400, '請先在 Codex 登入 ChatGPT 帳號；不會自動改用 API。')

@@ -31,7 +31,8 @@ def sentences(text):
     return result
 
 def protected_spans(text):
-    numbers = Counter(re.findall(r'(?<!\w)[+-]?\d+(?:[,.:/]\d+)*(?:%|\b)', text))
+    cleaned_for_nums = re.sub(r'(?m)^\s*(?:[#*]+\s*)*\d+[.)]\s+', '', text)
+    numbers = Counter(re.findall(r'(?<!\w)[+-]?\d+(?:[,.:/]\d+)*(?:%|\b)', cleaned_for_nums))
     references = Counter(re.findall(r'https?://[^\s<>]+|\[[^\]\n]{1,100}\]|\([^()\n]*\b(?:19|20)\d{2}[a-z]?[^()\n]*\)', text))
     quotes = Counter(m.group(1) for m in re.finditer(r'"([^"\n]+)"|“([^”\n]+)”', text.replace('“', '"').replace('”', '"')))
     return numbers, references, quotes
@@ -393,9 +394,15 @@ def post_humanize(text, original='', protected=()):
     paras = [p.strip() for p in work.strip().split('\n\n') if p.strip()]
     out_paras = []
     for p in paras:
+        p = re.sub(r'^#{1,6}\s+', '', p).strip()
+        if p.startswith('**') and p.endswith('**') and p.count('**') == 2:
+            p = p[2:-2].strip()
+        p = re.sub(r'^\*\*([^*]+)\*\*', r'\1', p)
         words_p = p.split()
-        if len(words_p) <= 12 and not re.search(r'[.!?]$', p) and len(paras) > 1:
-            out_paras.append(p + '.')
+        if len(words_p) <= 12 and len(paras) > 1:
+            if not re.search(r'[.!?]["”\')\]]*$', p):
+                p = p + '.'
+            out_paras.append(p)
             continue
         for pat, repls in MICRO_SUBS:
             if re.search(pat, p):

@@ -120,12 +120,13 @@ def run(req: RunRequest):
         if not codex_status()['chatgpt_login']:
             raise HTTPException(400, '請先在 Codex 登入 ChatGPT 帳號；不會自動改用 API。')
     if req.action == 'rewrite' and req.provider == 'api':
-        if not req.model.strip() or not req.api_key.get_secret_value().strip():
-            raise HTTPException(400, '請填入 API 金鑰及模型名稱。')
         try:
-            endpoint_url(req.base_url)
+            ep = endpoint_url(req.base_url)
         except ValueError as exc:
             raise HTTPException(400, str(exc)) from None
+        is_local_ep = any(h in ep for h in ('//127.0.0.1', '//localhost', '//[::1]'))
+        if not req.model.strip() or (not is_local_ep and not req.api_key.get_secret_value().strip()):
+            raise HTTPException(400, '請填入 API 金鑰及模型名稱（本機 Ollama 僅需填模型名稱）。')
     if any(len(s) > 500 or s not in req.text for s in req.protected):
         raise HTTPException(400, '指定保留文字必須出現在原文，且每項不超過 500 字元。')
     with LOCK:

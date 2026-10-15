@@ -71,9 +71,20 @@ powershell -ExecutionPolicy Bypass -File .\Setup.ps1
 
 ---
 
-## 💡 Codex 訂閱額度模式（預設 `Luna + Extra High`，免 API 金鑰）
+## 🔌 雙引擎支援：可填入「自己的 LLM API 金鑰」或使用「Codex 訂閱額度」
 
-只要你的電腦已安裝 Codex CLI 並執行過 `codex login` 登入 ChatGPT Plus / Pro 帳號：
-1. 系統會在無工具的唯讀沙盒（`--sandbox read-only`）中呼叫 **`Luna (gpt-6-luna)`**（預設思考強度 `Extra High`）。
-2. 直接使用你的 ChatGPT 訂閱額度，**完全不需要填入 `sk-...` API 金鑰，也不會產生額外 API 帳單**。
-3. 若想改用 OpenRouter / DeepSeek / OpenAI API，也可隨時在左側選單切換為「自己的 LLM API」。
+系統左側選單提供兩種改寫引擎模式，兩者皆完整搭載 **心理語言學 5 大認知規則 + SICO 黃金範例克隆 + 雙向段落選優**：
+
+### 模式 A：放入自己的 LLM API 金鑰（內建 7 大供應商一鍵範本）
+在介面左上方「使用方式」切換為 **「自己的 LLM API」**，即可直接選擇供應商範本並填入你的 API Key：
+* **OpenAI 官方**：`https://api.openai.com/v1`（預設 `gpt-4o`，亦支援 `gpt-4.1`、`o3-mini`）
+* **Anthropic Claude 官方**：`https://api.anthropic.com/v1/messages`（原生支援 Claude `x-api-key` 協定，預設 `claude-3-7-sonnet-latest`）
+* **Google Gemini 官方**：`https://generativelanguage.googleapis.com/v1beta/openai`（預設 `gemini-2.5-pro`）
+* **OpenRouter**：`https://openrouter.ai/api/v1`（可自由切換 Claude / DeepSeek / GPT 等所有模型）
+* **DeepSeek 官方**：`https://api.deepseek.com/v1`（預設 `deepseek-chat`）
+* **Groq 極速推論**：`https://api.groq.com/openai/v1`（預設 `llama-3.3-70b-versatile`）
+* **Ollama 本機模型（100% 離線免金鑰）**：`http://127.0.0.1:11434/v1`（預設 `llama3.1:8b`，免填 API Key）
+* **自訂任何 OpenAI 相容端點**（API 金鑰僅保存在當前瀏覽器記憶體，絕不寫入硬碟或匯出檔案）
+
+### 模式 B：Codex 訂閱額度模式（預設 `Luna + Extra High`，免 API 金鑰）
+若電腦已安裝 Codex CLI 並執行過 `codex login` 登入 ChatGPT Plus / Pro 帳號，系統可在唯讀沙盒（`--sandbox read-only`）中呼叫 **`Luna (gpt-6-luna)`** 或 **`Sol (gpt-6.1-sol)`**，直接消耗既有訂閱額度，無須額外付費 API。

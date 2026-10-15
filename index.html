@@ -6,13 +6,23 @@
 <header><div><div class="brand">Humanize Lab<span style="color:#80917e"> /</span></div><div class="tag">ENGLISH REWRITING EXPERIMENT</div></div><span class="pill" id="health">檢查本機模型…</span></header>
 <main><section class="intro"><h1>保留你的意思，探索更自然的表達。</h1><p>以 LLM 改寫、在本機檢查，逐輪比較並保留最佳版本。每一次修改都有紀錄；沒有改善時回到原文。</p></section>
 <div class="grid"><aside class="card"><h2>改寫設定</h2>
-<label for="provider">使用方式</label><select id="provider"><option value="codex" selected>Codex 訂閱額度（免 API 金鑰）</option><option value="api">自己的 LLM API</option></select>
+<label for="provider">使用方式</label><select id="provider"><option value="codex" selected>Codex 訂閱額度（免 API 金鑰）</option><option value="api">自己的 LLM API（OpenAI / Claude / Gemini / DeepSeek / Ollama）</option></select>
 <div id="codex-settings"><label for="codex-model">改寫模型</label><select id="codex-model"><option value="gpt-6-luna" selected>Luna · 快速改寫（預設推薦）</option><option value="gpt-6.1-sol">Sol · 深度模型</option></select><label for="codex-effort">思考強度（Reasoning Effort）</label><select id="codex-effort"><option value="xhigh" selected>Extra High (xhigh · 預設)</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low · 極速</option></select><div class="note" id="codex-status">確認 Codex 登入狀態…</div><small>使用既有 Codex 的 ChatGPT 登入，文章送至雲端模型改寫，消耗你的訂閱額度；偵測與品質檢查在本機執行。</small></div>
-<div id="api-settings" class="hidden"><small>支援 OpenAI 相容的 Chat Completions API。文章會送到你填入的服務。</small>
-<label for="base">API Base URL</label><input id="base" type="url" placeholder="https://你的供應商/v1" autocomplete="off">
-<label for="model">模型名稱</label><input id="model" placeholder="填入供應商的模型 ID" autocomplete="off">
-<label for="key">API 金鑰</label><input id="key" type="password" placeholder="只保留在這次工作中" autocomplete="off">
-<div class="note">金鑰不寫入磁碟、瀏覽器儲存或匯出報告。每個候選會呼叫一次 API，依你的供應商計費。</div></div>
+<div id="api-settings" class="hidden"><small>支援各大廠牌 API 與任何 OpenAI 相容端點，同樣內建完整心理語言學與 SICO 改寫引擎。</small>
+<label for="api-preset">供應商快速範本</label><select id="api-preset">
+<option value="openai" selected>OpenAI 官方 (gpt-4o / gpt-4.1)</option>
+<option value="anthropic">Anthropic Claude 官方 (claude-3-7-sonnet-latest)</option>
+<option value="gemini">Google Gemini 官方 (gemini-2.5-pro)</option>
+<option value="openrouter">OpenRouter (Claude / DeepSeek / GPT)</option>
+<option value="deepseek">DeepSeek 官方 (deepseek-chat)</option>
+<option value="groq">Groq 極速推論 (llama-3.3-70b-versatile)</option>
+<option value="ollama">Ollama 本機模型 (免 API 金鑰 · 127.0.0.1)</option>
+<option value="custom">自訂 OpenAI 相容 API 網址</option>
+</select>
+<label for="base">API Base URL</label><input id="base" type="url" value="https://api.openai.com/v1" placeholder="https://api.openai.com/v1" autocomplete="off">
+<label for="model">模型名稱 (Model ID)</label><input id="model" value="gpt-4o" placeholder="例如 gpt-4o 或 claude-3-7-sonnet-latest" autocomplete="off">
+<label for="key">API 金鑰 (API Key)</label><input id="key" type="password" placeholder="sk-...（Ollama 本機可留空）" autocomplete="off">
+<div class="note">金鑰僅保留在目前網頁記憶體中（不寫入磁碟或匯出報告），方便連續測試多篇文章。</div></div>
 <div class="two"><div><label for="rounds">最多輪數</label><select id="rounds"><option selected>1</option><option>2</option><option>3</option></select></div><div><label for="candidates">每輪候選</label><select id="candidates"><option selected>1</option><option>2</option><option>3</option><option>4</option></select></div></div>
 <label class="check"><input id="holdout" type="checkbox" checked><span>最後使用第二偵測器獨立測試<br><small>Desklib 不參與候選選擇。</small></span></label>
 <label for="protected">指定保留文字（選填）</label><textarea id="protected" rows="3" placeholder="每行一項，例如專有名詞或關鍵句"></textarea>
@@ -22,18 +32,28 @@
 <div class="note">分數越低，代表該偵測模型認為越不像 AI 文字。這不是「AI 撰寫機率」，也不保證通過其他偵測器。</div></div>
 <div id="status" class="status hidden" role="status" aria-live="polite"></div>
 <section id="result" class="card hidden"><div class="row between"><h2 id="result-title">本次結果</h2><span class="pill" id="outcome"></span></div><div class="scores" id="scores"></div><div id="heatmap-box" class="note" style="margin:14px 0"><div class="row between"><strong style="font-size:13px;color:#16322d">Turnitin 5 句重疊滑動視窗診斷（Overlapping 5-Sentence Sliding Windows）</strong><span id="heatmap-summary" style="font-size:12px"></span></div><div id="heatmap-bars" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px"></div></div><p id="verdict"></p><label for="output">選定版本</label><textarea id="output" readonly></textarea><div class="row" style="margin-top:14px"><button id="copy">複製文章</button><button id="export">匯出完整 JSON 紀錄</button><button id="clear">清除本次紀錄</button></div><details><summary>查看文字差異</summary><pre id="diff"></pre></details><details><summary>逐輪回溯紀錄</summary><div id="history"></div></details></section>
-</section></div><footer>研究原型 · 不訓練模型、不 fine-tune。Fakespot 提供改寫回饋；Desklib 用於最後驗證；MiniLM 與 NLI 協助檢查語意。<br>本機服務僅監聽 127.0.0.1。Codex 模式不需要 API 金鑰；關閉服務會清除記憶體中的工作紀錄。</footer></main>
+</section></div><footer>研究原型 · 不訓練模型、不 fine-tune。Fakespot 提供改寫回饋；Desklib 用於最後驗證；MiniLM 與 NLI 協助檢查語意。<br>本機服務僅監聽 127.0.0.1。支援自備 API 金鑰（OpenAI / Claude / Gemini / DeepSeek / OpenRouter / Ollama）或 Codex 訂閱額度。</footer></main>
 <script>
 const TOKEN='__LOCAL_TOKEN__';let jobId=null,result=null,busy=false;const $=id=>document.getElementById(id);
+const PRESETS={
+  openai:{url:'https://api.openai.com/v1',model:'gpt-4o'},
+  anthropic:{url:'https://api.anthropic.com/v1/messages',model:'claude-3-7-sonnet-latest'},
+  gemini:{url:'https://generativelanguage.googleapis.com/v1beta/openai',model:'gemini-2.5-pro'},
+  openrouter:{url:'https://openrouter.ai/api/v1',model:'anthropic/claude-3.7-sonnet'},
+  deepseek:{url:'https://api.deepseek.com/v1',model:'deepseek-chat'},
+  groq:{url:'https://api.groq.com/openai/v1',model:'llama-3.3-70b-versatile'},
+  ollama:{url:'http://127.0.0.1:11434/v1',model:'llama3.1:8b'}
+};
+$('api-preset').onchange=()=>{const p=PRESETS[$('api-preset').value];if(p){$('base').value=p.url;$('model').value=p.model}};
 const demo=`In recent years, urban green spaces have become an important topic in discussions about public health and city planning. Parks provide residents with places to exercise, relax, and meet other people. They can also offer shade during warm weather and create habitats for birds and insects. However, the benefits of a park depend on more than its size. Accessibility, maintenance, and the needs of nearby residents all influence how often the space is used. A large park that is difficult to reach may be less useful than a smaller one within walking distance. City planners should therefore consider both the amount of green space and the practical experience of the people who use it. Investment in parks should also include ongoing maintenance, clear paths, and opportunities for community feedback.`;
 function count(){$('count').textContent=($('input').value.match(/\b[\w]+(?:['’][\w]+)*\b/g)||[]).length+' words'}
 $('input').addEventListener('input',count);$('example').onclick=()=>{$('input').value=demo;count()};
 async function api(path,method='GET',body){let r=await fetch(path,{method,headers:{'Content-Type':'application/json','X-Local-Token':TOKEN},body:body?JSON.stringify(body):undefined});let data;try{data=await r.json()}catch{throw Error('本機服務回應異常')}if(!r.ok)throw Error(typeof data.detail==='string'?data.detail:'請確認輸入格式與本機服務狀態。');return data}
 function status(s,error=false){$('status').classList.remove('hidden');$('status').classList.toggle('error',error);$('status').textContent=s}
 function running(v){busy=v;['rewrite','detect','example'].forEach(x=>$(x).disabled=v);$('stop').classList.toggle('hidden',!v)}
-async function start(action){if(busy)return;try{running(true);status(action==='detect'?'開始本機偵測，未呼叫 LLM。':($('provider').value==='codex'?'開始使用 Codex 訂閱額度改寫。':'開始改寫；文章將送到你指定的 API。'));$('result').classList.add('hidden');result=null;
+async function start(action){if(busy)return;try{running(true);status(action==='detect'?'開始本機偵測，未呼叫 LLM。':($('provider').value==='codex'?'開始使用 Codex 訂閱額度改寫。':'開始使用你的自訂 LLM API 改寫。'));$('result').classList.add('hidden');result=null;
 const req={text:$('input').value,action,provider:$('provider').value,codex_model:$('codex-model').value,codex_effort:$('codex-effort').value,base_url:$('base').value,model:$('model').value,api_key:$('key').value,rounds:+$('rounds').value,candidates:+$('candidates').value,holdout:$('holdout').checked,protected:$('protected').value.split('\n').map(x=>x.trim()).filter(Boolean)};
-const data=await api('/api/run','POST',req);req.api_key='';$('key').value='';jobId=data.job_id;await poll();}catch(e){status(e.message,true);running(false)}}
+const data=await api('/api/run','POST',req);req.api_key='';jobId=data.job_id;await poll();}catch(e){status(e.message,true);running(false)}}
 async function poll(){try{const j=await api('/api/jobs/'+jobId);status(j.stage);if(j.state==='done'){result=j.result;render();running(false);return}if(j.state==='error'){status(j.error,true);running(false);return}setTimeout(poll,1200)}catch(e){status(e.message,true);running(false)}}
 function scoreCard(name,before,after){const el=document.createElement('div');el.className='score';const title=document.createElement('div');title.textContent=name;const num=document.createElement('strong');const pct=v=>(v*100).toFixed(2)+'%';num.textContent=pct(before.score)+' → '+pct(after.score);const note=document.createElement('span');note.textContent='原始分數 '+before.score.toFixed(4)+' → '+after.score.toFixed(4)+' · '+after.windows.length+' 個文字視窗 · 全文覆蓋';el.append(title,num,note);return el}
 function zeroCard(zb,za){const el=document.createElement('div');el.className='score';const title=document.createElement('div');title.textContent='ZeroGPT · 線上即時偵測 API';const num=document.createElement('strong');const pct=v=>(v*100).toFixed(1)+'%';num.textContent=pct(zb.score)+' → '+pct(za.score);const note=document.createElement('span');note.textContent=`標記黃字句數：${(zb.flagged||[]).length} 句 → ${(za.flagged||[]).length} 句`;el.append(title,num,note);return el}

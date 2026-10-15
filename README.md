@@ -90,13 +90,23 @@ Your browser will automatically open **`http://127.0.0.1:8391`**.
 
 ---
 
-## 💡 How the `$0 API` Codex Subscription Mode Works
+## 🔌 Dual Rewriting Engines: Bring Your Own API (BYOK) or `$0` Codex Subscription
 
-In `codex_provider.py`, Humanize Lab invokes your local `codex.exe` binary in an **isolated, read-only, tool-disabled sandbox (`--sandbox read-only`)**:
-* Uses **`Luna (gpt-6-luna)`** with **`Extra High (xhigh)`** reasoning effort by default (or `Sol (gpt-6.1-sol)`).
-* Consumes your existing **ChatGPT Plus / Pro subscription quota**—no `sk-...` OpenAI API key or pay-per-token billing required.
-* Strictly verifies via `codex-preflight.json` that all shell/file/web tools are stripped before sending any text.
-* You can also switch to **Custom OpenAI-Compatible API Mode** in the UI sidebar at any time.
+Humanize Lab supports **two flexible ways** to power the Psycholinguistic + SICO rewriting loop in the sidebar:
+
+### Option A: Bring Your Own LLM API (1-Click Presets Included)
+Select **"自己的 LLM API (OpenAI / Claude / Gemini / DeepSeek / Ollama)"** in the Web UI to use your own API key with built-in 1-click presets:
+* **OpenAI Official**: `https://api.openai.com/v1` (`gpt-4o`, `gpt-4.1`, `o3-mini`)
+* **Anthropic Claude Official**: `https://api.anthropic.com/v1/messages` (`claude-3-7-sonnet-latest`, native Anthropic `x-api-key` protocol supported)
+* **Google Gemini Official**: `https://generativelanguage.googleapis.com/v1beta/openai` (`gemini-2.5-pro`, `gemini-2.5-flash`)
+* **OpenRouter**: `https://openrouter.ai/api/v1` (`anthropic/claude-3.7-sonnet`, `deepseek/deepseek-chat`, etc.)
+* **DeepSeek Official**: `https://api.deepseek.com/v1` (`deepseek-chat`, `deepseek-reasoner`)
+* **Groq**: `https://api.groq.com/openai/v1` (`llama-3.3-70b-versatile`)
+* **Local Ollama (100% Offline & Free)**: `http://127.0.0.1:11434/v1` (`llama3.1:8b`, `qwen2.5:14b` — no API key required)
+* **Any Custom OpenAI-Compatible Endpoint**
+
+### Option B: `$0 API` Codex Subscription Mode
+If you have `codex.exe` logged into your ChatGPT Plus / Pro / Team account (`codex login`), `codex_provider.py` runs **`Luna (gpt-6-luna)`** (`Extra High` reasoning effort) or **`Sol (gpt-6.1-sol)`** inside a read-only, tool-disabled sandbox (`--sandbox read-only`), consuming your existing ChatGPT subscription quota without any `sk-...` API key or per-token billing.
 
 ---
 

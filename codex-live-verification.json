@@ -1,0 +1,267 @@
+{
+  "original": "In recent years, urban green spaces have become an important topic in discussions about public health and city planning. Parks provide residents with places to exercise, relax, and meet other people. They can also offer shade during warm weather and create habitats for birds and insects. However, the benefits of a park depend on more than its size. Accessibility, maintenance, and the needs of nearby residents all influence how often the space is used. A large park that is difficult to reach may be less useful than a smaller one within walking distance. City planners should therefore consider both the amount of green space and the practical experience of the people who use it. Investment in parks should also include ongoing maintenance, clear paths, and opportunities for community feedback.",
+  "text": "Lately, urban green spaces have come up a lot in talks about public health and city planning. Parks give people who live nearby room to work out, rest, and meet others. Along with homes for birds and insects, parks can give people shade in warm weather. Yet knowing how big a park is will not tell you all the good it does. How much use it gets comes down in part to whether it is easy to reach, kept in good shape, and suited to the needs of nearby residents. Getting to a large park may be so hard that a smaller one a walk away is more useful. So city planners should look at how much green space there is and what it is like for people to use it. Ways for the community to give feedback should be funded along with parks themselves, clear paths, and steady upkeep.",
+  "changed": true,
+  "guide_before": {
+    "model": "guide",
+    "score": 0.999911904335022,
+    "windows": [
+      {
+        "start_token": 0,
+        "end_token": 146,
+        "score": 0.999911904335022,
+        "tokens": 146
+      }
+    ],
+    "tokens": 146,
+    "aggregation": "token-weighted mean of non-overlapping windows",
+    "calibrated": false,
+    "coverage": 1.0
+  },
+  "guide_after": {
+    "model": "guide",
+    "score": 0.003258397104218602,
+    "windows": [
+      {
+        "start_token": 0,
+        "end_token": 167,
+        "score": 0.003258397104218602,
+        "tokens": 167
+      }
+    ],
+    "tokens": 167,
+    "aggregation": "token-weighted mean of non-overlapping windows",
+    "calibrated": false,
+    "coverage": 1.0
+  },
+  "history": [
+    {
+      "round": 1,
+      "candidate": 1,
+      "accepted": true,
+      "text": "Lately, urban green spaces have come up a lot in talks about public health and city planning. Parks give people who live nearby room to work out, rest, and meet others. Along with homes for birds and insects, parks can give people shade in warm weather. Yet knowing how big a park is will not tell you all the good it does. How much use it gets comes down in part to whether it is easy to reach, kept in good shape, and suited to the needs of nearby residents. Getting to a large park may be so hard that a smaller one a walk away is more useful. So city planners should look at how much green space there is and what it is like for people to use it. Ways for the community to give feedback should be funded along with parks themselves, clear paths, and steady upkeep.",
+      "rules": {
+        "passed": true,
+        "reasons": [],
+        "length_ratio": 1.1628
+      },
+      "meaning": {
+        "passed": true,
+        "reasons": [],
+        "similarity": 0.8100704550743103,
+        "max_contradiction": 0.013971898704767227,
+        "sentence_pairs": 16,
+        "thresholds": {
+          "similarity_min": 0.68,
+          "contradiction_max": 0.65
+        },
+        "note": "啟發式品質門檻，未校準；通過不等於事實完全一致，仍須人工核對。"
+      },
+      "guide": {
+        "model": "guide",
+        "score": 0.003258397104218602,
+        "windows": [
+          {
+            "start_token": 0,
+            "end_token": 167,
+            "score": 0.003258397104218602,
+            "tokens": 167
+          }
+        ],
+        "tokens": 167,
+        "aggregation": "token-weighted mean of non-overlapping windows",
+        "calibrated": false,
+        "coverage": 1.0
+      },
+      "reasons": [
+        "通過自動品質檢查，且引導偵測分數改善超過 0.005。"
+      ]
+    },
+    {
+      "round": 1,
+      "candidate": 2,
+      "accepted": false,
+      "text": "City green spaces have drawn a lot of attention lately in talks about public health and city planning. Parks give the people who live there somewhere to work out, unwind, and meet other people. Parks may shelter birds and insects and give people a shady spot when the weather is warm. Yet knowing how big a park is will not tell you all the good it does. Ease of access, how well the grounds are cared for, and the needs of people living nearby help decide how often people use it. Getting to a large park may be so hard that a smaller one a walk away is more useful. City planners should take account of people’s experience of using green spaces along with the amount of green space they have. Ways for the community to give feedback should be funded along with parks themselves, clear paths, and steady upkeep.",
+      "rules": {
+        "passed": true,
+        "reasons": [],
+        "length_ratio": 1.1628
+      },
+      "meaning": {
+        "passed": true,
+        "reasons": [],
+        "similarity": 0.8165404200553894,
+        "max_contradiction": 0.013971884734928608,
+        "sentence_pairs": 16,
+        "thresholds": {
+          "similarity_min": 0.68,
+          "contradiction_max": 0.65
+        },
+        "note": "啟發式品質門檻，未校準；通過不等於事實完全一致，仍須人工核對。"
+      },
+      "guide": {
+        "model": "guide",
+        "score": 0.0003564741346053779,
+        "windows": [
+          {
+            "start_token": 0,
+            "end_token": 169,
+            "score": 0.0003564741346053779,
+            "tokens": 169
+          }
+        ],
+        "tokens": 169,
+        "aggregation": "token-weighted mean of non-overlapping windows",
+        "calibrated": false,
+        "coverage": 1.0
+      },
+      "reasons": [
+        "未改善足夠，退回先前最佳版本。"
+      ]
+    },
+    {
+      "round": 2,
+      "candidate": 1,
+      "accepted": false,
+      "text": "Talk about public health and city planning has lately turned more often to green spaces in cities. Parks give the people who live there somewhere to work out, unwind, and meet other people. Warm days are when the shade in parks can help, and birds and insects can find homes there too. Raw acreage alone does not tell us how useful a park is. Ease of getting there, the care given to the grounds, and the needs of people living nearby each affect how often it gets used. Getting to a large park may be so hard that a smaller one a walk away is more useful. City planners should take account of people’s experience of using green spaces along with the amount of green space they have. Ways for the community to give feedback should be funded along with parks themselves, clear paths, and steady upkeep.",
+      "rules": {
+        "passed": true,
+        "reasons": [],
+        "length_ratio": 1.1395
+      },
+      "meaning": {
+        "passed": true,
+        "reasons": [],
+        "similarity": 0.796297013759613,
+        "max_contradiction": 0.013971884734928608,
+        "sentence_pairs": 16,
+        "thresholds": {
+          "similarity_min": 0.68,
+          "contradiction_max": 0.65
+        },
+        "note": "啟發式品質門檻，未校準；通過不等於事實完全一致，仍須人工核對。"
+      },
+      "guide": {
+        "model": "guide",
+        "score": 0.0005064840661361814,
+        "windows": [
+          {
+            "start_token": 0,
+            "end_token": 168,
+            "score": 0.0005064840661361814,
+            "tokens": 168
+          }
+        ],
+        "tokens": 168,
+        "aggregation": "token-weighted mean of non-overlapping windows",
+        "calibrated": false,
+        "coverage": 1.0
+      },
+      "reasons": [
+        "未改善足夠，退回先前最佳版本。"
+      ]
+    },
+    {
+      "round": 2,
+      "candidate": 2,
+      "accepted": false,
+      "text": "Talk about public health and city planning has lately turned more often to green spaces in cities. Parks give the people who live there somewhere to work out, unwind, and meet other people. Warm days are when the shade in parks can help, and birds and insects can find homes there too. Raw acreage alone does not tell us how useful a park is. Ease of getting there, the care given to the grounds, and the needs of people living nearby each affect how often it gets used. Getting to a large park may be so hard that a smaller one a walk away is more useful. City planners should take account of people’s experience of using green spaces along with the amount of green space they have. Ways for the community to give feedback should be funded along with parks themselves, clear paths, and steady upkeep.",
+      "rules": {
+        "passed": true,
+        "reasons": [],
+        "length_ratio": 1.1395
+      },
+      "meaning": {
+        "passed": true,
+        "reasons": [],
+        "similarity": 0.796297013759613,
+        "max_contradiction": 0.013971884734928608,
+        "sentence_pairs": 16,
+        "thresholds": {
+          "similarity_min": 0.68,
+          "contradiction_max": 0.65
+        },
+        "note": "啟發式品質門檻，未校準；通過不等於事實完全一致，仍須人工核對。"
+      },
+      "guide": {
+        "model": "guide",
+        "score": 0.0005064840661361814,
+        "windows": [
+          {
+            "start_token": 0,
+            "end_token": 168,
+            "score": 0.0005064840661361814,
+            "tokens": 168
+          }
+        ],
+        "tokens": 168,
+        "aggregation": "token-weighted mean of non-overlapping windows",
+        "calibrated": false,
+        "coverage": 1.0
+      },
+      "reasons": [
+        "未改善足夠，退回先前最佳版本。"
+      ]
+    }
+  ],
+  "stopped": false,
+  "api_failed": false,
+  "settings": {
+    "rounds": 2,
+    "candidates": 2,
+    "heldout_requested": true
+  },
+  "diff": "--- original\n+++ selected\n@@ -1 +1 @@\n-In recent years, urban green spaces have become an important topic in discussions about public health and city planning. Parks provide residents with places to exercise, relax, and meet other people. They can also offer shade during warm weather and create habitats for birds and insects. However, the benefits of a park depend on more than its size. Accessibility, maintenance, and the needs of nearby residents all influence how often the space is used. A large park that is difficult to reach may be less useful than a smaller one within walking distance. City planners should therefore consider both the amount of green space and the practical experience of the people who use it. Investment in parks should also include ongoing maintenance, clear paths, and opportunities for community feedback.\n+Lately, urban green spaces have come up a lot in talks about public health and city planning. Parks give people who live nearby room to work out, rest, and meet others. Along with homes for birds and insects, parks can give people shade in warm weather. Yet knowing how big a park is will not tell you all the good it does. How much use it gets comes down in part to whether it is easy to reach, kept in good shape, and suited to the needs of nearby residents. Getting to a large park may be so hard that a smaller one a walk away is more useful. So city planners should look at how much green space there is and what it is like for people to use it. Ways for the community to give feedback should be funded along with parks themselves, clear paths, and steady upkeep.",
+  "interpretation": "分數是模型輸出，不是真實 AI 撰寫機率。低分不代表保證通過其他偵測。",
+  "holdout_before": {
+    "model": "holdout",
+    "score": 0.9998819828033447,
+    "windows": [
+      {
+        "start_token": 0,
+        "end_token": 145,
+        "score": 0.9998819828033447,
+        "tokens": 145
+      }
+    ],
+    "tokens": 145,
+    "aggregation": "token-weighted mean of non-overlapping windows",
+    "calibrated": false,
+    "coverage": 1.0
+  },
+  "holdout_after": {
+    "model": "holdout",
+    "score": 0.34294256567955017,
+    "windows": [
+      {
+        "start_token": 0,
+        "end_token": 166,
+        "score": 0.34294256567955017,
+        "tokens": 166
+      }
+    ],
+    "tokens": 166,
+    "aggregation": "token-weighted mean of non-overlapping windows",
+    "calibrated": false,
+    "coverage": 1.0
+  },
+  "holdout_improved": true,
+  "models": {
+    "guide": {
+      "repo": "fakespot-ai/roberta-base-ai-text-detection-v1",
+      "revision": "f9cdb14d1f8b105f597d80fa7b56f20c6ea0e9db"
+    },
+    "holdout": {
+      "repo": "desklib/ai-text-detector-v1.01",
+      "revision": "5fdea974cd4287c61674951ec78803aa274e2fb7"
+    },
+    "similarity": {
+      "repo": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "nli": {
+      "repo": "cross-encoder/nli-deberta-v3-small",
+      "revision": "fa2804872c3b4bd748f38c0185cc85775361e735"
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "date": "2026-10-13 America/New_York",
+  "repositories": [
+    {
+      "name": "Adversarial-Paraphrasing",
+      "url": "https://github.com/chengez/Adversarial-Paraphrasing.git",
+      "commit": "d8515ab705e10b08a1a04214767114522c454bd7",
+      "git_status": "",
+      "tracked_files": 108,
+      "files_present": 108,
+      "working_tree_bytes": 56683766,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "ai-detection-paraphrases",
+      "url": "https://github.com/martiansideofthemoon/ai-detection-paraphrases.git",
+      "commit": "95f3e2cb5e239929a1fc4bed26bf93f2c368da31",
+      "git_status": "",
+      "tracked_files": 65,
+      "files_present": 65,
+      "working_tree_bytes": 250573,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "ai-text-detector",
+      "url": "https://github.com/desklib/ai-text-detector.git",
+      "commit": "d141cecd7a1ff77f21e4ef0a3fed8ac90a159ee4",
+      "git_status": "",
+      "tracked_files": 2,
+      "files_present": 2,
+      "working_tree_bytes": 10102,
+      "license_files": [],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "apollodft",
+      "url": "https://github.com/fakespot-ai/apollodft.git",
+      "commit": "2a752b9cf569c9da68c3ef397e8d4735485a1726",
+      "git_status": "",
+      "tracked_files": 9,
+      "files_present": 9,
+      "working_tree_bytes": 525491,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "Binoculars",
+      "url": "https://github.com/ahans30/Binoculars.git",
+      "commit": "c8ae2f90d50ee696418bc71d8d9e5020e5f9d7b8",
+      "git_status": "",
+      "tracked_files": 27,
+      "files_present": 27,
+      "working_tree_bytes": 203624322,
+      "license_files": [
+        "LICENSE.md"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "clarity",
+      "url": "https://github.com/roowus/clarity.git",
+      "commit": "99bd33c083046b76b22489ec0eaebb79c84c81ae",
+      "git_status": "",
+      "tracked_files": 28,
+      "files_present": 28,
+      "working_tree_bytes": 98244,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "detecting-fake-text",
+      "url": "https://github.com/HendrikStrobelt/detecting-fake-text.git",
+      "commit": "fdf7de9396d12156e52d751c36d35ca48d1c1b9a",
+      "git_status": "",
+      "tracked_files": 71,
+      "files_present": 71,
+      "working_tree_bytes": 9927417,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "fast-detect-gpt",
+      "url": "https://github.com/baoguangsheng/fast-detect-gpt.git",
+      "commit": "971b05202bac2bb504d60c0ac0812fea7a8f7c82",
+      "git_status": "",
+      "tracked_files": 503,
+      "files_present": 503,
+      "working_tree_bytes": 5407379219,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "ghostbuster",
+      "url": "https://github.com/vivek3141/ghostbuster.git",
+      "commit": "f60068d006b7dc617af90e7148118837e85d0555",
+      "git_status": "",
+      "tracked_files": 53,
+      "files_present": 53,
+      "working_tree_bytes": 19712466,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "humanizer",
+      "url": "https://github.com/paniccow/humanizer.git",
+      "commit": "ac059b65a29ef4a49f06eb396a84e991ab3bb488",
+      "git_status": "",
+      "tracked_files": 144,
+      "files_present": 144,
+      "working_tree_bytes": 29645377,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "L2D",
+      "url": "https://github.com/Mamba413/L2D.git",
+      "commit": "462d5761012ca97755b0876efeaf0c644aac1cd0",
+      "git_status": "",
+      "tracked_files": 340,
+      "files_present": 340,
+      "working_tree_bytes": 207671072,
+      "license_files": [],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "Lastde_Detector",
+      "url": "https://github.com/TrustMedia-zju/Lastde_Detector.git",
+      "commit": "ead6939e0e9382f9ce5aa1b33b936ee6c4e0605d",
+      "git_status": "",
+      "tracked_files": 212,
+      "files_present": 212,
+      "working_tree_bytes": 168482406,
+      "license_files": [],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "MAGE",
+      "url": "https://github.com/yafuly/MAGE.git",
+      "commit": "6d11f851184b9f04166f952ddc1f47727f36710f",
+      "git_status": "",
+      "tracked_files": 12,
+      "files_present": 12,
+      "working_tree_bytes": 937273,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "MGT-Eval",
+      "url": "https://github.com/Liyuuuu111/MGT-Eval.git",
+      "commit": "91cd8d492b7243a5855cccec37e461bfdc1e9d7e",
+      "git_status": "",
+      "tracked_files": 458,
+      "files_present": 458,
+      "working_tree_bytes": 147712684,
+      "license_files": [],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "NTS",
+      "url": "https://github.com/Shixuan-Ma/NTS.git",
+      "commit": "0ddf18ef50f352c9c996d9fe68c9895da34914ca",
+      "git_status": "",
+      "tracked_files": 89,
+      "files_present": 89,
+      "working_tree_bytes": 186255333,
+      "license_files": [],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "RADAR",
+      "url": "https://github.com/IBM/RADAR.git",
+      "commit": "3a9acf6d3d9b1766f5c6497af96601dea1ead868",
+      "git_status": "",
+      "tracked_files": 5,
+      "files_present": 5,
+      "working_tree_bytes": 42821,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    },
+    {
+      "name": "raid",
+      "url": "https://github.com/liamdugan/raid.git",
+      "commit": "f3015f24ab6b0c56515a31223541012f2fedb9b8",
+      "git_status": "",
+      "tracked_files": 467,
+      "files_present": 294,
+      "working_tree_bytes": 1333889769,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "sparse checkout excluding leaderboard/submissions"
+    },
+    {
+      "name": "SeqXGPT",
+      "url": "https://github.com/Jihuai-wpy/SeqXGPT.git",
+      "commit": "da2f264160c12a95c9573c4820fefaa75a68a0f9",
+      "git_status": "",
+      "tracked_files": 42,
+      "files_present": 42,
+      "working_tree_bytes": 54679241,
+      "license_files": [
+        "LICENSE"
+      ],
+      "scope": "depth-1 source checkout"
+    }
+  ],
+  "model_cards_only": [
+    "desklib/ai-text-detector-v1.01",
+    "fakespot-ai/roberta-base-ai-text-detection-v1",
+    "ShantanuT01/vanguard-ai-text-detector"
+  ],
+  "prototype_models": "humanize-lab/models/manifest.json",
+  "full_benchmarks_downloaded": false
+}

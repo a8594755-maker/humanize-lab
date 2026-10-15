@@ -1,0 +1,24 @@
+{
+  "input": "In today's rapidly evolving urban landscape, public parks play a crucial role in enhancing the well-being of local communities. These green spaces offer a wide range of benefits, from providing opportunities for physical activity to fostering social connections among residents. Furthermore, parks can offer shade during warm weather and provide habitats for birds and insects. It is important to note that the value of a park depends on more than its size. Accessibility, maintenance, and the needs of nearby residents all play a significant role in determining how often the space is used. A large park that is difficult to reach may be less useful than a smaller one within walking distance. In conclusion, city planners should consider both the amount of green space and the practical experience of residents, while providing ongoing maintenance and opportunities for community feedback.",
+  "output": "As cities change, public parks remain important to the well-being of nearby communities. They give residents places to exercise and meet one another, and they can provide shade in warm weather as well as habitats for birds and insects. A park’s value depends on more than its size: access, upkeep, and the needs of people who live nearby all affect how often it is used. A large park that is hard to reach may serve residents less well than a smaller park within walking distance. City planners should weigh the amount of green space alongside residents’ day-to-day experience, and provide ongoing maintenance and ways for the community to offer feedback.",
+  "rewriter": {
+    "provider": "codex_chatgpt",
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "requested_service_tier": "default",
+    "calls": [
+      {
+        "usage": {
+          "input_tokens": 4095,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 140,
+          "reasoning_output_tokens": 0
+        },
+        "duration_seconds": 4.17
+      }
+    ],
+    "api_key_used": false
+  },
+  "real_codex_call": true
+}

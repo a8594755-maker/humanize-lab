@@ -1,0 +1,18 @@
+{
+  "guide": {
+    "repo": "fakespot-ai/roberta-base-ai-text-detection-v1",
+    "revision": "f9cdb14d1f8b105f597d80fa7b56f20c6ea0e9db"
+  },
+  "holdout": {
+    "repo": "desklib/ai-text-detector-v1.01",
+    "revision": "5fdea974cd4287c61674951ec78803aa274e2fb7"
+  },
+  "similarity": {
+    "repo": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  },
+  "nli": {
+    "repo": "cross-encoder/nli-deberta-v3-small",
+    "revision": "fa2804872c3b4bd748f38c0185cc85775361e735"
+  }
+}

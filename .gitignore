@@ -1,0 +1,13 @@
+# Virtual environment & caches
+.venv/
+__pycache__/
+.pytest_cache/
+.codex-runtime/
+codex-preflight.json
+
+# Large HuggingFace model weights (automatically downloaded on first run via Start.cmd / Setup.ps1)
+models/guide/
+models/holdout/
+models/similarity/
+models/nli/
+!models/manifest.json

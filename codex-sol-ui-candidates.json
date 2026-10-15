@@ -1,0 +1,56 @@
+{
+  "provider": "codex_chatgpt",
+  "model": "gpt-6.1-sol",
+  "real_ui_run": true,
+  "visible_scores": {
+    "guide_before": 1,
+    "guide_after": 0.872,
+    "holdout_before": 1,
+    "holdout_after": 0.993,
+    "precision": "rounded UI values"
+  },
+  "candidates": [
+    {
+      "round": 1,
+      "candidate": 1,
+      "accepted": true,
+      "text": "Urban green spaces have become an important part of public health and city planning discussions in recent years. Parks give residents places to exercise, unwind, and spend time with others. They can also provide shade in warm weather and habitats for birds and insects.\n\nYet a park’s benefits depend on more than its size. How easy it is to reach, how well it is maintained, and what nearby residents need all affect how often people use it. A large park that is hard to get to may be less useful than a smaller park within walking distance.\n\nCity planners should therefore look at both the amount of green space available and people’s practical experience of using it. Funding for parks should also cover regular maintenance, clear paths, and ways for the community to offer feedback.",
+      "rules": {
+        "passed": true,
+        "reasons": [],
+        "length_ratio": 1.0465
+      },
+      "meaning": {
+        "passed": true,
+        "reasons": [],
+        "similarity": 0.9133300185203552,
+        "max_contradiction": 0.0011954145738855004,
+        "sentence_pairs": 16,
+        "thresholds": {
+          "similarity_min": 0.68,
+          "contradiction_max": 0.65
+        },
+        "note": "啟發式品質門檻，未校準；通過不等於事實完全一致，仍須人工核對。"
+      },
+      "guide": {
+        "model": "guide",
+        "score": 0.8718029856681824,
+        "windows": [
+          {
+            "start_token": 0,
+            "end_token": 160,
+            "score": 0.8718029856681824,
+            "tokens": 160
+          }
+        ],
+        "tokens": 160,
+        "aggregation": "token-weighted mean of non-overlapping windows",
+        "calibrated": false,
+        "coverage": 1
+      },
+      "reasons": [
+        "通過自動品質檢查，且引導偵測分數改善超過 0.005。"
+      ]
+    }
+  ]
+}

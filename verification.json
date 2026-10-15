@@ -1,0 +1,196 @@
+{
+  "test_type": "real local detectors and semantic models; simulated HTTP LLM response",
+  "external_llm_tested": false,
+  "device": "cuda",
+  "long_text_coverage_test": {
+    "model": "guide",
+    "score": 0.9999387106308801,
+    "windows": [
+      {
+        "start_token": 0,
+        "end_token": 510,
+        "score": 0.9999380111694336,
+        "tokens": 510
+      },
+      {
+        "start_token": 510,
+        "end_token": 634,
+        "score": 0.9999415874481201,
+        "tokens": 124
+      }
+    ],
+    "tokens": 634,
+    "aggregation": "token-weighted mean of non-overlapping windows",
+    "calibrated": false,
+    "coverage": 1.0
+  },
+  "contradiction_test": {
+    "passed": false,
+    "reasons": [
+      "語意模型發現可能的前後矛盾。"
+    ],
+    "similarity": 0.7647002935409546,
+    "max_contradiction": 0.9997900128364563,
+    "sentence_pairs": 4,
+    "thresholds": {
+      "similarity_min": 0.68,
+      "contradiction_max": 0.65
+    },
+    "note": "啟發式品質門檻，未校準；通過不等於事實完全一致，仍須人工核對。"
+  },
+  "pipeline": {
+    "original": "In today's rapidly evolving urban landscape, public parks play a crucial role in enhancing the well-being of local communities. These green spaces offer a wide range of benefits, from providing opportunities for physical activity to fostering social connections among residents. Furthermore, parks can offer shade during warm weather and provide habitats for birds and insects. It is important to note that the value of a park depends on more than its size. Accessibility, maintenance, and the needs of nearby residents all play a significant role in determining how often the space is used. A large park that is difficult to reach may be less useful than a smaller one within walking distance. In conclusion, city planners should consider both the amount of green space and the practical experience of residents, while providing ongoing maintenance and opportunities for community feedback.",
+    "text": "In today's rapidly evolving urban landscape, public parks play a crucial role in enhancing the well-being of local communities. These green spaces offer a wide range of benefits, from providing opportunities for physical activity to fostering social connections among residents. Furthermore, parks can offer shade during warm weather and provide habitats for birds and insects. It is important to note that the value of a park depends on more than its size. Accessibility, maintenance, and the needs of nearby residents all play a significant role in determining how often the space is used. A large park that is difficult to reach may be less useful than a smaller one within walking distance. In conclusion, city planners should consider both the amount of green space and the practical experience of residents, while providing ongoing maintenance and opportunities for community feedback.",
+    "changed": false,
+    "guide_before": {
+      "model": "guide",
+      "score": 0.9999438524246216,
+      "windows": [
+        {
+          "start_token": 0,
+          "end_token": 157,
+          "score": 0.9999438524246216,
+          "tokens": 157
+        }
+      ],
+      "tokens": 157,
+      "aggregation": "token-weighted mean of non-overlapping windows",
+      "calibrated": false,
+      "coverage": 1.0
+    },
+    "guide_after": {
+      "model": "guide",
+      "score": 0.9999438524246216,
+      "windows": [
+        {
+          "start_token": 0,
+          "end_token": 157,
+          "score": 0.9999438524246216,
+          "tokens": 157
+        }
+      ],
+      "tokens": 157,
+      "aggregation": "token-weighted mean of non-overlapping windows",
+      "calibrated": false,
+      "coverage": 1.0
+    },
+    "history": [
+      {
+        "round": 1,
+        "candidate": 1,
+        "accepted": false,
+        "text": "Parks give city residents somewhere to exercise, relax, and spend time with other people. They also provide shade in warm weather and places for birds and insects to live. Those benefits matter, but the size of a park tells us little about how useful it is to the people nearby. Getting there matters too. A small park within walking distance may serve residents better than a large one that is hard to reach. Maintenance and the needs of the surrounding community also affect how often people use it. When planning green spaces, cities should look at both the amount of land available and what using those spaces is actually like. They should plan for regular upkeep and give residents a way to share feedback.",
+        "rules": {
+          "passed": true,
+          "reasons": [],
+          "length_ratio": 0.8857
+        },
+        "meaning": {
+          "passed": true,
+          "reasons": [],
+          "similarity": 0.6807157397270203,
+          "max_contradiction": 0.0008477256051264703,
+          "sentence_pairs": 15,
+          "thresholds": {
+            "similarity_min": 0.68,
+            "contradiction_max": 0.65
+          },
+          "note": "啟發式品質門檻，未校準；通過不等於事實完全一致，仍須人工核對。"
+        },
+        "guide": {
+          "model": "guide",
+          "score": 0.9996097683906555,
+          "windows": [
+            {
+              "start_token": 0,
+              "end_token": 137,
+              "score": 0.9996097683906555,
+              "tokens": 137
+            }
+          ],
+          "tokens": 137,
+          "aggregation": "token-weighted mean of non-overlapping windows",
+          "calibrated": false,
+          "coverage": 1.0
+        },
+        "reasons": [
+          "未改善足夠，退回先前最佳版本。"
+        ]
+      }
+    ],
+    "stopped": false,
+    "api_failed": false,
+    "settings": {
+      "rounds": 1,
+      "candidates": 1,
+      "heldout_requested": true
+    },
+    "diff": "",
+    "interpretation": "分數是模型輸出，不是真實 AI 撰寫機率。低分不代表保證通過其他偵測。",
+    "holdout_before": {
+      "model": "holdout",
+      "score": 0.9999885559082031,
+      "windows": [
+        {
+          "start_token": 0,
+          "end_token": 157,
+          "score": 0.9999885559082031,
+          "tokens": 157
+        }
+      ],
+      "tokens": 157,
+      "aggregation": "token-weighted mean of non-overlapping windows",
+      "calibrated": false,
+      "coverage": 1.0
+    },
+    "holdout_after": {
+      "model": "holdout",
+      "score": 0.9999885559082031,
+      "windows": [
+        {
+          "start_token": 0,
+          "end_token": 157,
+          "score": 0.9999885559082031,
+          "tokens": 157
+        }
+      ],
+      "tokens": 157,
+      "aggregation": "token-weighted mean of non-overlapping windows",
+      "calibrated": false,
+      "coverage": 1.0
+    },
+    "holdout_improved": false,
+    "models": {
+      "guide": {
+        "repo": "fakespot-ai/roberta-base-ai-text-detection-v1",
+        "revision": "f9cdb14d1f8b105f597d80fa7b56f20c6ea0e9db"
+      },
+      "holdout": {
+        "repo": "desklib/ai-text-detector-v1.01",
+        "revision": "5fdea974cd4287c61674951ec78803aa274e2fb7"
+      },
+      "similarity": {
+        "repo": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      "nli": {
+        "repo": "cross-encoder/nli-deberta-v3-small",
+        "revision": "fa2804872c3b4bd748f38c0185cc85775361e735"
+      }
+    }
+  },
+  "control_tests": {
+    "passed": 10,
+    "command": "python -m pytest test_core.py -q"
+  },
+  "ui_verification": {
+    "browser": "Chrome",
+    "observed": "demo article produced guide and holdout scores in the visible UI",
+    "screenshot": "interface-verified.jpg",
+    "external_api_not_used": true
+  },
+  "cleanup": {
+    "test_server_stopped": true,
+    "test_browser_tab_closed": true
+  }
+}
